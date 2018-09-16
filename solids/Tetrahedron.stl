@@ -1,0 +1,26 @@
+solid ascii
+facet normal -1 0 0
+outer loop
+vertex 0.000000 0.000000 0.000000
+vertex 1.000000 0.000000 0.000000
+vertex 1.000000 1.000000 0.000000
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 1.000000 0.000000 -2.000000
+vertex 1.000000 1.000000 0.000000
+vertex 1.000000 0.000000 0.000000
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 0.000000 0.000000 0.000000
+vertex 1.000000 1.000000 0.000000
+vertex 1.000000 0.000000 -2.000000
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 0.000000 0.000000 0.000000
+vertex 1.000000 0.000000 0.000000
+vertex 1.000000 0.000000 -2.000000
+endloop
+endfacetendsolid
