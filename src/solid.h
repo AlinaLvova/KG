@@ -12,7 +12,7 @@ void writeTriangle(std::ofstream& fout, double x0, double y0, double z0, double 
     fout << "vertex " << std::to_string(x1) << " " << std::to_string(y1) << " " << std::to_string(z1) << "\n";
     fout << "vertex " << std::to_string(x2) << " " << std::to_string(y2) << " " << std::to_string(z2) << "\n";
     fout << "endloop\n";
-    fout << "endfacet";
+    fout << "endfacet\n";
 }
 
 void writeTriangleForCylinder(std::ofstream& fout, std::string _p1, std::string _p2, std::string _p3)
@@ -23,7 +23,7 @@ void writeTriangleForCylinder(std::ofstream& fout, std::string _p1, std::string 
     fout << _p2;
     fout << _p3;
     fout << "endloop\n";
-    fout << "endfacet";
+    fout << "endfacet\n";
 }
 
 void makeTriangleStl(std::string filename)
@@ -94,27 +94,62 @@ void makeTetrahedronStl(std::string filename)
 	fout.close();
 }
 
-void makeRingStl(std::string filename, int _n, double _radius)
+void makeCircleStl(std::ofstream& fout, int _n, double _radius, double x0, double y0, double z0)
 {
     double alpha = 6.28 / _n;
     double R = _radius;
-    std::string first0 = "vertex " + std::to_string(_radius) + " 0 0\n";
+    std::string center = "vertex " + std::to_string(x0) + " " + std::to_string(y0) + " " + std::to_string(z0) + "\n";
+    std::string first0 = "vertex " + std::to_string(R + x0) + " " + std::to_string(y0) + " " + std::to_string(z0) + "\n";
+    std::string point01 = first0, point02 = first0;
+
+    fout << "solid ascii\n";
+    for (int i = 0; i < _n; i++)
+    {
+        point02 = "vertex " + std::to_string(R*cos(alpha*i) + x0) +
+            " " + std::to_string(R*sin(alpha*i) + y0) + " " + std::to_string(z0) + "\n";
+        writeTriangleForCylinder(fout, center, point01, point02);
+        point01 = point02;
+    }
+    writeTriangleForCylinder(fout, first0, center, point01);
+    fout << "endsolid\n";
+}
+
+
+
+
+void makeKonusIntegration(std::string filename, int _n, double _radius, double h)
+{
+    double alpha = 6.28 / _n;
+    double R = _radius;
+    std::string first0;
     std::string point01 = first0, point02 = first0;
 
     std::ofstream fout(filename);
     fout << "solid ascii\n";
-
-    for (int i = 0; i < _n; i++)
+    double z = 0;
+    int k=0;
+    double step = (R-0.3)/(h/(0.01));
+    while (z < h)
     {
-        point02 = "vertex " + std::to_string(R*cos(alpha*i)) + " " + std::to_string(R*sin(alpha*i)) + " 0\n";
-        writeTriangleForCylinder(fout, point01, "vertex 0 0 0\n", point02);
-        point01 = point02;
-    }
-    writeTriangleForCylinder(fout, "vertex 0 0 0\n", first0, point01);
 
+        first0 = "vertex " + std::to_string(R) + " 0 " + std::to_string(z) + "\n";
+        point01 = first0;
+        for (int i = 0; i < _n; i++)
+        {
+            point02 = "vertex " + std::to_string(R*cos(alpha*i)) + " " + std::to_string(R*sin(alpha*i)) + " " + std::to_string(z) + "\n";
+            writeTriangleForCylinder(fout, point01, "vertex 0 0 " + std::to_string(z) + "\n", point02);
+            point01 = point02;
+        }
+        writeTriangleForCylinder(fout, "vertex 0 0 " + std::to_string(z) + "\n", first0, point01);
+        R = R - step;
+        z = z + 0.01;
+        k++;
+    }
     fout << "endsolid";
     fout.close();
 }
+
+
 
 
 void makeCylinderStl(std::string filename, int _n, double _radius, double _high)
