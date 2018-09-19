@@ -1,0 +1,68 @@
+solid ascii
+facet normal -1 0 0
+outer loop
+vertex 2.000000 0 0
+vertex 0 0 0
+vertex 2.000000 0.000000 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 2.000000 0.000000 0
+vertex 0 0 0
+vertex 1.618408 1.175055 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 1.618408 1.175055 0
+vertex 0 0 0
+vertex 0.619246 1.901719 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 0.619246 1.901719 0
+vertex 0 0 0
+vertex -0.616216 1.902703 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex -0.616216 1.902703 0
+vertex 0 0 0
+vertex -1.616535 1.177631 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex -1.616535 1.177631 0
+vertex 0 0 0
+vertex -1.999997 0.003185 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex -1.999997 0.003185 0
+vertex 0 0 0
+vertex -1.620278 -1.172476 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex -1.620278 -1.172476 0
+vertex 0 0 0
+vertex -0.622274 -1.900730 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex -0.622274 -1.900730 0
+vertex 0 0 0
+vertex 0.613185 -1.903682 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 0.613185 -1.903682 0
+vertex 0 0 0
+vertex 1.614657 -1.180204 0
+endloop
+endfacetfacet normal -1 0 0
+outer loop
+vertex 0 0 0
+vertex 2.000000 0 0
+vertex 1.614657 -1.180204 0
+endloop
+endfacetendsolid
